@@ -2,20 +2,6 @@
 <h1 align="center">Hi 👋, I'm Mauricio Marin Lucero</h1>
 <h3 align="center">A passionate Web developer from Argentina</h3>
 
-- 🔭 I’m currently working on <strong>"JavaScript-Project"</strong>
-
-- 📫 How to reach me **mauriciomarinlucero@gmail.com**
-
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-<a href="https://www.linkedin.com/in/mauriciomarinlucero?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BoJDwr2fmTp%2Brea7RcLGlxw%3D%3D" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="http://linkedin.com/in/mauriciomarinlucero" height="30" width="40" /></a>
-<a href="https://www.instagram.com/mauri15_zurdo?igsh=Y3pkbjN1a3N3azc3&utm_source=qr" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="@mauri15_zurdo" height="30" width="40" /></a>
-</p>
-
-<h3 align="left">Languages and Tools:</h3>
-<h1 align="center">Hi 👋, I'm Mauricio Marin Lucero</h1>
-<h3 align="center">A passionate Web developer from Argentina</h3>
-
 - 🔭 I’m currently working on [Proyecto---Coderhouse](https://github.com/MauriML/JavaScript-Project.git)
 
 - 📫 How to reach me **mauriciomarinlucero@gmail.com**
