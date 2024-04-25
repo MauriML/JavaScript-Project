@@ -2,7 +2,7 @@
 <h1 align="center">Hi 👋, I'm Mauricio Marin Lucero</h1>
 <h3 align="center">A passionate Web developer from Argentina</h3>
 
-- 🔭 I’m currently working on [Proyecto---Coderhouse](https://github.com/MauriML/JavaScript-Project.git)
+- 🔭 I’m currently working on [JavaScript-Project](https://github.com/MauriML/JavaScript-Project.git)
 
 - 📫 How to reach me **mauriciomarinlucero@gmail.com**
 
