@@ -1,75 +1,98 @@
-// Funciones esenciales del proceso a simular
+// Navbar toggle
 
-// Función para mostrar un mensaje en el HTML
-const mostrarMensaje = mensaje => {
-    const resultados = document.getElementById("resultados");
-    resultados.innerHTML += `<p>${mensaje}</p>`;
-};
+function showSidebar (){
+    const sidebar = document.querySelector(".sidebar")
+    sidebar.style.display = "flex"
+}
 
-// Objeto para representar un videojuego
-const videojuegos = [
-    { titulo: "FIFA 2024", plataforma: "PlayStation 5", precio: 59.99 },
-    { titulo: "Call of Duty: Warzone", plataforma: "Xbox Series X", precio: 49.99 },
-    { titulo: "The Legend of Zelda: Breath of the Wild", plataforma: "Nintendo Switch", precio: 54.99 },
-    { titulo: "Super Mario Odyssey", plataforma: "Nintendo Switch", precio: 49.99 },
-    { titulo: "God of War", plataforma: "PlayStation 4", precio: 39.99 },
-    { titulo: "Halo Infinite", plataforma: "Xbox Series X", precio: 59.99 },
-];
+function hideSidebar (){
+    const sidebar = document.querySelector(".sidebar")
+    sidebar.style.display = "none"
+}
 
-// Función para mostrar los detalles de un videojuego
-const mostrarDetallesJuego = juego => {
-    mostrarMensaje("Detalles del juego:");
-    mostrarMensaje(`Título: ${juego.titulo}`);
-    mostrarMensaje(`Plataforma: ${juego.plataforma}`);
-    mostrarMensaje(`Precio: ${juego.precio} USD`);
-};
+// Fin Navbar toggle
 
-// Función para simular la compra de un videojuego
-const comprarJuego = (juego, cantidad) => {
-    const total = juego.precio * cantidad;
-    mostrarMensaje(`Has comprado ${cantidad} copias de ${juego.titulo}`);
-    mostrarMensaje(`Total a pagar: ${total.toFixed(2)} USD`);
-};
+// Carusel
 
-// Función de orden superior I: Filtrar juegos por plataforma
-const filtrarJuegosPorPlataforma = (juegos, plataforma) => juegos.filter(juego => juego.plataforma === plataforma);
+const btnleft = document.querySelector(".btn-left"),
+    btnright =  document.querySelector(".btn-right"),
+    slider = document.querySelector("#slider"),
+    sliderSection = document.querySelectorAll(".slider-section");
 
-// Función de orden superior II: Calcular el total de precios de juegos
-const calcularTotalPrecios = juegos => juegos.reduce((total, juego) => total + juego.precio, 0);
 
-// Simulación de la e-commerce de videojuegos
-const simularECommerce = () => {
-    mostrarMensaje("¡Bienvenido a nuestra tienda de videojuegos!");
+btnleft.addEventListener("click", e => moveToLeft())
+btnright.addEventListener("click", e => moveToRight())
 
-    // Mostrar todas las opciones de videojuegos disponibles
-    mostrarMensaje("\nVideojuegos disponibles:");
-    videojuegos.forEach((juego, index) => mostrarMensaje(`${index + 1}. ${juego.titulo}`));
+setInterval(() => {
+    moveToRight()
+}, 3000);
 
-    // Permitir al usuario seleccionar un videojuego
-    let opcion = parseInt(prompt("Ingrese el número del videojuego que desea comprar:"));
-    while (isNaN(opcion) || opcion < 1 || opcion > videojuegos.length) {
-        mostrarMensaje("Opción no válida. Por favor, ingrese el número correspondiente al videojuego que desea comprar:");
-        opcion = parseInt(prompt("Ingrese el número del videojuego que desea comprar:"));
+let operacion = 0,
+    counter = 0,
+    widthSvg = 100 / sliderSection.length;
+
+function moveToRight() {
+    if (counter >= sliderSection.length-1) {
+        counter = 0;
+        operacion = 0;
+        slider.style.transform = `translate(-${operacion}%)`;
+        slider.style.transition="none";
+        return;
     }
-    const juegoSeleccionado = videojuegos[opcion - 1];
+    counter++;
+    operacion = operacion + widthSvg;
+    slider.style.transform = `translate(-${operacion}%)`;
+    slider.style.transition = "all ease .6s"
+}
 
-    // Mostrar los detalles del videojuego seleccionado
-    mostrarDetallesJuego(juegoSeleccionado);
-
-    // Permitir al usuario ingresar la cantidad deseada
-    let cantidad = parseInt(prompt("Ingrese la cantidad de copias que desea comprar:"));
-    while (isNaN(cantidad) || cantidad <= 0) {
-        mostrarMensaje("La cantidad ingresada no es válida. Por favor, ingrese un número mayor que cero:");
-        cantidad = parseInt(prompt("Ingrese la cantidad de copias que desea comprar:"));
+function moveToLeft() {
+    counter--;
+    if (counter < 0) {
+        counter = sliderSection.length-1;
+        operacion = widthSvg * (sliderSection.length-1)
+        slider.style.transform = `translate(-${operacion}%)`;
+        slider.style.transition="none";
+        return;
     }
+    operacion = operacion - widthSvg;
+    slider.style.transform = `translate(-${operacion}%)`;
+    slider.style.transition = "all ease .6s"
+}
+// Fin Carusel
 
-    // Realizar la compra del videojuego seleccionado
-    comprarJuego(juegoSeleccionado, cantidad);
+// Play Station Section
+// Array para almacenar los productos en el carrito
+const cartItems = [];
+let cartTotal = 0;
 
-    // Mostrar el total de precios de todos los juegos disponibles
-    mostrarMensaje("\nTotal de precios de todos los juegos disponibles:");
-    mostrarMensaje(`${calcularTotalPrecios(videojuegos).toFixed(2)} USD`);
-};
+// Función para agregar un producto al carrito
+function addToCart(productName, price) {
+    cartItems.push({name: productName, price: price});
+    cartTotal += price;
+    updateCart();
+}
 
-// Ejecutar la simulación al cargar la página
-simularECommerce();
+// Función para quitar un producto del carrito
+function removeFromCart(index) {
+    const removedItem = cartItems.splice(index, 1)[0];
+    cartTotal -= removedItem.price;
+    updateCart();
+}
+
+// Función para actualizar la visualización del carrito
+function updateCart() {
+    const cartList = document.getElementById('cart-items');
+    cartList.innerHTML = '';
+
+    cartItems.forEach((item, index) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${item.name} - ${item.price} ARS`;
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Quitar';
+        removeButton.onclick = () => removeFromCart(index);
+        listItem.appendChild(removeButton);
+        cartList.appendChild(listItem);
+    });
+
+    document.getElementById('cart-total').textContent = cartTotal;
+}
