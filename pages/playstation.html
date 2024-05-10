@@ -12,28 +12,28 @@
     <!--Nav Bar-->
     <div>
         <header>
-                <nav>
-                    <ul class="sidebar">
-                        <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 -960 960 960" width="26"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="playstation.html">Play Station</a></li>
-                        <li><a href="#">Xbox</a></li>
-                        <li><a href="#">PC</a></li>
-                        </ul>
-                    <ul class="menu">
-                        <li><a href="index.html">Ultra Gaming</a></li>
-                        <li class="hideOnMobile"><a href="index.html">Home</a></li>
-                        <li class="hideOnMobile"><a href="./pages/playstation.html">Play Station</a></li>
-                        <li class="hideOnMobile"><a href="#">Xbox</a></li>
-                        <li class="hideOnMobile"><a href="#">PC</a></li>
-                        <li class="menu-button" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 -960 960 960" width="26"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
-                        </ul>
-                </nav>
+            <nav>
+                <ul class="sidebar">
+                    <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 -960 960 960" width="26"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224-224Z"/></svg></a></li>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../pages/playstation.html">Play Station</a></li>
+                    <li><a href="#">Xbox</a></li>
+                    <li><a href="#">PC</a></li>
+                </ul>
+                <ul class="menu">
+                    <li><a href="../index.html">Ultra Gaming</a></li>
+                    <li class="hideOnMobile"><a href="../index.html">Home</a></li>
+                    <li class="hideOnMobile"><a href="../pages/playstation.html">Play Station</a></li>
+                    <li class="hideOnMobile"><a href="#">Xbox</a></li>
+                    <li class="hideOnMobile"><a href="#">PC</a></li>
+                    <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 -960 960 960" width="26"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+                </ul>
+            </nav>
         </header>
     </div>
-<!--Fin Nav Bar-->
+    <!--Fin Nav Bar-->
 
-<!-- Play Station -->
+    <!-- Play Station Section -->
     <section class="section-playstation">
         <h1 class="title-play">Play Station</h1>
         <div class="cards-section">
@@ -84,20 +84,65 @@
                 </div>
             </div>
         </div>
-        <div id="cart">
-            <h3>Carrito de Compras</h3>
-            <ul id="cart-items"></ul>
-            <p>Total: <span id="cart-total">0</span> ARS</p>
-        </div>
     </section>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2024 Ultra Gaming. Todos los derechos reservados.</p>
-</footer>
-<script src="../script.js"></script>
-<!-- Bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Carrito de Compras -->
+    <section class="customer" id="customer">
+        <div class="container">
+            <h1>Haga su Pedido</h1>
+            <div class="form">
+                <div class="container-fluid delivery">
+                    <div class="row mb-3">
+                        <label for="productos" class="col-sm-2 col-form-label">Seleccione su Producto:</label>
+                        <div class="col-sm-4 product-select">
+                            <select class="form-select" id="productos" onchange="agregarPrecio()">
+                                <option value="1">Prince of Persia: The Lost Crown</option>
+                                <option value="2">PlayStation 4</option>
+                                <option value="3">FIFA 2024</option>
+                                <option value="4">Play Station 5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="cantidad" class="col-sm-2 col-form-label">Cantidad:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="campoNumerico" id="cantidad" onkeyup="calcularSubtotal()">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="precio" class="col-sm-2 col-form-label">Precio:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="campoNumerico" id="precio" disabled>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="subtotal" class="col-sm-2 col-form-label">Subtotal:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="campoNumerico" id="subtotal" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-4">
+                            <div id="error" class="text-danger"></div>
+                            <button class="agregar" onclick="agregarProducto()">AGREGAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Ultra Gaming. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/script.js"></script>
+    <script src="../js/datos.js"></script>
+    <!-- Bootstrap JS (dependencias) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- AOS (librería de animaciones) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </body>
 </html>

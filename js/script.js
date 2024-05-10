@@ -61,15 +61,26 @@ function moveToLeft() {
 // Fin Carusel
 
 // Play Station Section
-// Array para almacenar los productos en el carrito
-const cartItems = [];
-let cartTotal = 0;
+// Array para almacenar los productos en el carrito, inicializado desde localStorage si está disponible
+let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+let cartTotal = calculateCartTotal();
+
+// Función para calcular el total del carrito
+function calculateCartTotal() {
+    return cartItems.reduce((total, item) => total + item.price, 0);
+}
+
+// Función para guardar el carrito en localStorage
+function saveCartToStorage() {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+}
 
 // Función para agregar un producto al carrito
 function addToCart(productName, price) {
     cartItems.push({name: productName, price: price});
     cartTotal += price;
     updateCart();
+    saveCartToStorage();
 }
 
 // Función para quitar un producto del carrito
@@ -77,9 +88,10 @@ function removeFromCart(index) {
     const removedItem = cartItems.splice(index, 1)[0];
     cartTotal -= removedItem.price;
     updateCart();
+    saveCartToStorage();
 }
 
-// Función para actualizar la visualización del carrito
+// Función para actualizar la visualización del carrito en el DOM
 function updateCart() {
     const cartList = document.getElementById('cart-items');
     cartList.innerHTML = '';
@@ -95,4 +107,48 @@ function updateCart() {
     });
 
     document.getElementById('cart-total').textContent = cartTotal;
+
+    // Actualizar el contador del carrito en la barra de navegación
+    document.getElementById('cart-count').textContent = cartItems.length;
+}
+
+// Ejecutar la función updateCart al cargar la página para mostrar el carrito actual
+window.addEventListener('load', updateCart);
+
+// Función para agregar producto desde el formulario
+function agregarProducto() {
+    const productName = document.getElementById('productos').value;
+    const price = obtenerPrecio(productName);
+    const cantidad = parseInt(document.getElementById('cantidad').value);
+
+    if (isNaN(cantidad) || cantidad <= 0) {
+        document.getElementById('error').textContent = 'Ingrese una cantidad válida.';
+        return;
+    }
+
+    addToCart(productName, price * cantidad);
+    limpiarFormulario();
+}
+
+// Función para obtener el precio según el producto seleccionado
+function obtenerPrecio(productName) {
+    switch (productName) {
+        case '1':
+            return 30000; // Precio de Prince of Persia
+        case '2':
+            return 400000; // Precio de PlayStation 4
+        case '3':
+            return 25000; // Precio de FIFA 2024
+        case '4':
+            return 500000; // Precio de PlayStation 5
+        default:
+            return 0;
+    }
+}
+
+// Función para limpiar el formulario después de agregar un producto
+function limpiarFormulario() {
+    document.getElementById('productos').selectedIndex = 0;
+    document.getElementById('cantidad').value = '';
+    document.getElementById('error').textContent = '';
 }

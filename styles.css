@@ -6,6 +6,7 @@
 body {
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
 }
 
 /*Nav Bar*/
@@ -196,6 +197,123 @@ nav li:first-child {
 .row .mb-3 {
     width: 192px;
 }
+
+/*Pedidos*/
+
+.customer {
+    padding-top: 20px;
+}
+
+.customer h1 {
+    font-size: 3em;
+    text-align: center;
+    margin: 0px;
+    color: rgb(0, 0, 0);
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-name: blink;
+}
+
+@keyframes blink{
+    0% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    font-size: 2em;
+    padding: 30px 10px;
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.delivery {
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.product-select {
+    margin-left: 57px;
+}
+
+.col-sm-2 .col-sm-4 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-form-label {
+    padding-top: calc(.375rem + 1px);
+    padding-bottom: calc(.375rem + 1px);
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.5;
+}
+
+select {
+    font-size: 20px;
+    padding: 5px;
+    background-color: hsl(33, 8%, 79%);
+    max-width: 240px;
+    word-wrap: normal;
+    text-transform: none;
+}
+
+option {
+    font-weight: normal;
+    display: block;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+    white-space: nowrap;
+}
+
+.campoNumerico {
+    width: 240px;
+    background-color: #cecac5;
+    text-align: right;
+}
+
+input {
+    font-size: 20px;
+    width: 240px;
+}
+
+.error {
+    color: red;
+    font-size: 1.5rem;
+}
+
+.agregar {
+    height: 55px;
+    width: 170px;
+    background-color: #003087;
+    color: rgb(208, 208, 208);
+    margin-top: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+/*Fin Pedidos*/
 /*Fin Seccion Play Station*/
 
 /*Footer*/
