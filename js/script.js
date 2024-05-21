@@ -61,10 +61,9 @@ function moveToLeft() {
 // Fin Carusel
 
 // Play Station Section
-
-// Initialize an empty array for cartItems and cartTotal
+// Array para almacenar los productos en el carrito, inicializado desde localStorage si está disponible
 let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-let cartTotal = 0;
+let cartTotal = calculateCartTotal();
 
 // Función para calcular el total del carrito
 function calculateCartTotal() {
@@ -149,4 +148,24 @@ function limpiarFormulario() {
   document.getElementById('productos').selectedIndex = 0;
   document.getElementById('cantidad').value = '';
   document.getElementById('error').textContent = '';
+}
+
+// Función para calcular el subtotal
+function calcularSubtotal() {
+  const productName = document.getElementById('productos').value;
+  const price = obtenerPrecio(productName);
+  const quantity = parseInt(document.getElementById('cantidad').value);
+
+  if (isNaN(quantity) || quantity <= 0) {
+    document.getElementById('error').textContent = 'Ingrese una cantidad válida.';
+    return;
+  }
+
+  document.getElementById('precio').value = price;
+  document.getElementById('subtotal').value = price * quantity;
+}
+
+// Función para agregar precio
+function agregarPrecio() {
+  calcularSubtotal();
 }
