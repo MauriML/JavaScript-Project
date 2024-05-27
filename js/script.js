@@ -60,22 +60,22 @@ function moveToLeft() {
 }
 // Fin Carusel
 
+
 // Play Station Section
-// Array para almacenar los productos en el carrito, inicializado desde localStorage si está disponible
 let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 let cartTotal = calculateCartTotal();
 
-// Función para calcular el total del carrito
+// Function to calculate the total of the cart
 function calculateCartTotal() {
   return cartItems.reduce((total, item) => total + item.price, 0);
 }
 
-// Función para guardar el carrito en localStorage
+// Function to save the cart to localStorage
 function saveCartToStorage() {
   localStorage.setItem('cart', JSON.stringify(cartItems));
 }
 
-// Función para agregar un producto al carrito
+// Function to add a product to the cart
 function addToCart(productName, price, quantity = 1) {
   const productPrice = price * quantity;
   cartItems.push({ name: productName, price: productPrice });
@@ -84,7 +84,7 @@ function addToCart(productName, price, quantity = 1) {
   saveCartToStorage();
 }
 
-// Función para quitar un producto del carrito
+// Function to remove a product from the cart
 function removeFromCart(index) {
   const removedItem = cartItems.splice(index, 1)[0];
   cartTotal -= removedItem.price;
@@ -92,7 +92,7 @@ function removeFromCart(index) {
   saveCartToStorage();
 }
 
-// Función para actualizar la visualización del carrito en el DOM
+// Function to update the cart display in the DOM
 function updateCart() {
   const cartList = document.getElementById('cart-items');
   cartList.innerHTML = '';
@@ -107,50 +107,58 @@ function updateCart() {
     cartList.appendChild(listItem);
   });
 
-  document.getElementById('cart-total').textContent = cartTotal;
-
-  // Actualizar el contador del carrito en la barra de navegación
-  document.getElementById('cart-count').textContent = cartItems.length;
+  document.getElementById('cart-total').textContent = `Total: ${cartTotal} ARS`;
 }
 
-// Ejecutar la función updateCart al cargar la página para mostrar el carrito actual
-window.addEventListener('load', updateCart);
-
-// Función para agregar producto desde el formulario
+// Function to add product from the form
 function agregarProducto() {
-  const productName = document.getElementById('productos').value;
-  const price = obtenerPrecio(productName);
-  const cantidad = parseInt(document.getElementById('cantidad').value);
+  var cantidad = parseInt($("#cantidad").val());
+  if (cantidad > 0) {
+    $("#error").html("");
+    var itemId = parseInt($("#productos").val());
 
-  if (isNaN(cantidad) || cantidad <= 0) {
-    document.getElementById('error').textContent = 'Ingrese una cantidad válida.';
-    return;
+    var indiceYaExiste = pedido.items.findIndex((item) => {
+      return item.itemId == itemId;
+    });
+    if (indiceYaExiste == -1) {
+      pedido.items.push({ itemId, cantidad });
+    } else {
+      pedido.items[indiceYaExiste].cantidad += cantidad;
+    }
+    $("#cantidad").val("");
+    $("#subtotal").val("");
+    dibujarPedido();
+  } else {
+    $("#error").html("Debe ingresar cantidad");
   }
-
-  addToCart(productName, price, cantidad);
-  limpiarFormulario();
 }
 
-// Función para obtener el precio según el producto seleccionado
+// Function to get the price based on the selected product
 function obtenerPrecio(productName) {
   const priceMap = {
-    '1': 30000, // Precio de Prince of Persia
-    '2': 400000, // Precio de PlayStation 4
-    '3': 25000, // Precio de FIFA 2024
-    '4': 500000, // Precio de PlayStation 5
+    '1': 30000, // Prince of Persia
+    '2': 400000, // PlayStation 4
+    '3': 25000, // FIFA 2024
+    '4': 500000, // PlayStation 5
+    '5': 40000, // NBA 2K24
+    '6': 35000, // Dead Island 2
+    '7': 25000, // Spider Man Miles Morales
+    '8': 35000, // God of War Ragnarok
+    '9': 55000, // Lego Star Wars The Skywalker Saga
+    '10': 45000, // Helldivers 2
   };
 
   return priceMap[productName] || 0;
 }
 
-// Función para limpiar el formulario después de agregar un producto
+// Function to clear the form after adding a product
 function limpiarFormulario() {
   document.getElementById('productos').selectedIndex = 0;
   document.getElementById('cantidad').value = '';
   document.getElementById('error').textContent = '';
 }
 
-// Función para calcular el subtotal
+// Function to calculate the subtotal
 function calcularSubtotal() {
   const productName = document.getElementById('productos').value;
   const price = obtenerPrecio(productName);
@@ -165,7 +173,28 @@ function calcularSubtotal() {
   document.getElementById('subtotal').value = price * quantity;
 }
 
-// Función para agregar precio
+// Function to add price
 function agregarPrecio() {
   calcularSubtotal();
+}
+
+// Function to finalize the order
+function finalizarPedido() {
+  if ($("#name").val().trim() === "") {
+    $("#error-cliente").html("Debe ingresar un nombre");
+    return;
+  }
+  if ($("#phone").val().trim() === "") {
+    $("#error-cliente").html("Debe ingresar un teléfono");
+    return;
+  }
+  if ($("#adress").val().trim() === "") {
+    $("#error-cliente").html("Debe ingresar una dirección");
+    return;
+  }
+
+  $("#detalle-pedido").html(`Muchas gracias por tu compra ${$("#name").val()}, estaremos enviando tu pedido a ${$("#adress").val()} en los próximos minutos`);
+  $("#modal-pedido").modal();
+  $("#pedido-final").html("");
+  $("#form-cliente").html("");
 }

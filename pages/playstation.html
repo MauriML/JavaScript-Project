@@ -34,7 +34,7 @@
     <!--Fin Nav Bar-->
 
     <!-- Play Station Section -->
-    <section class="section-playstation">
+    <section class="section-playstation" id="objetos">
         <h1 class="title-play">Play Station</h1>
         <div class="cards-section">
             <div class="cards">
@@ -45,7 +45,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Prince of Persia: The Lost Crown</h5>
                                 <p class="card-text">30.000 ARS</p>
-                                <a href="#" class="btn btn-primary" onclick="addToCart('Prince of Persia: The Lost Crown', 30000)">Añadir a Carrito</a>
+                                <a href="#" class="btn btn-primary" onclick="seleccionarProducto(1)">Añadir a Carrito</a>
                             </div>
                         </div>
                     </div>
@@ -55,19 +55,17 @@
                             <div class="card-body">
                                 <h5 class="card-title">PlayStation 4</h5>
                                 <p class="card-text">400.000 ARS</p>
-                                <a href="#" class="btn btn-primary" onclick="addToCart('Play Station 4', 400000)">Añadir al Carrito</a>
+                                <a href="#" class="btn btn-primary" onclick="seleccionarProducto(2)">Añadir al Carrito</a>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-sm-6 mb-3">
                         <div class="card" style="width: 170px;">
                             <img src="../imagenes/PS5-FIFA24.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">FIFA 2024</h5>
                                 <p class="card-text">25.000 ARS</p>
-                                <a href="#" class="btn btn-primary" onclick="addToCart('FIFA 2024', 25000)">Añadir al Carrito</a>
+                                <a href="#" class="btn btn-primary" onclick="seleccionarProducto(3)">Añadir al Carrito</a>
                             </div>
                         </div>
                     </div>
@@ -77,7 +75,67 @@
                             <div class="card-body">
                                 <h5 class="card-title">Play Station 5</h5>
                                 <p class="card-text">500.000 ARS</p>
-                                <a href="#" class="btn btn-primary" onclick="addToCart('Play Station 5', 500000)">Añadir al Carrito</a>
+                                <a href="#" class="btn btn-primary" onclick="seleccionarProducto(4)">Añadir al Carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card" style="width: 170px;">
+                            <img src="../imagenes/NBA-2K24.jpg-5.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">NBA 2K24</h5>
+                                <p class="card-text">40.000 ARS</p>
+                                <a href="#" class="btn btn-primary" onclick="seleccionarProducto(5)">Añadir al Carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card" style="width: 170px;">
+                            <img src="../imagenes/Dead-Island-2.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Dead Island 2</h5>
+                                <p class="card-text">35.000 ARS</p>
+                                <a href="#" class="btn btn-primary" onclick="seleccionarProducto(6)">Añadir al Carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card" style="width: 170px;">
+                            <img src="../imagenes/Marvels-Spider-Man-Miles-Morales.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Spider Man Miles Morales</h5>
+                                <p class="card-text">25.000 ARS</p>
+                                <a href="#" class="btn btn-primary" onclick="seleccionarProducto(7)">Añadir al Carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card" style="width: 170px;">
+                            <img src="../imagenes/God-of-war-Ragnarok.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">God of War Ragnarok</h5>
+                                <p class="card-text">35.000 ARS</p>
+                                <a href="#" class="btn btn-primary" onclick="seleccionarProducto(8)">Añadir al Carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card" style="width: 170px;">
+                            <img src="../imagenes/Lego-Star-Wars.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Lego Star Wars The Skywalker Saga</h5>
+                                <p class="card-text">55.000 ARS</p>
+                                <a href="#" class="btn btn-primary" onclick="seleccionarProducto(9)">Añadir al Carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card" style="width: 170px;">
+                            <img src="../imagenes/Helldivers-2.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Helldivers 2</h5>
+                                <p class="card-text">45.000 ARS</p>
+                                <a href="#" class="btn btn-primary" onclick="seleccionarProducto(10)">Añadir al Carrito</a>
                             </div>
                         </div>
                     </div>
@@ -100,6 +158,12 @@
                                 <option value="2">PlayStation 4</option>
                                 <option value="3">FIFA 2024</option>
                                 <option value="4">Play Station 5</option>
+                                <option value="5">NBA 2K24</option>
+                                <option value="6">Dead Island 2</option>
+                                <option value="7">Spider Man Miles Morales</option>
+                                <option value="8">God of War Ragnarok</option>
+                                <option value="9">Lego Star Wars The Skywalker Saga</option>
+                                <option value="10">Helldivers 2</option>
                             </select>
                         </div>
                     </div>
@@ -128,6 +192,69 @@
                             <button class="agregar" onclick="agregarProducto()">AGREGAR</button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="pedido-final" id="pedido-final"><table class="table table-hover table-dark finalizar-pedido">
+            <thead>
+                <tr class="items">
+                    <th scope="col">#</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody><tr>
+                <th scope="row">1</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span class="icono-eliminar" onclick="eliminarItem(0)"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+                </svg></span></td>
+                </tr><tr>
+                <td colspan="3"></td>
+                <td class="total">TOTAL</td>
+                <td class="monto"></td>
+                <td></td>
+                </tr>
+            </tbody>
+            </table></div>
+        <div class="form-cliente container-fluid form" id="form-cliente">
+            <div class="row">
+                <div class="col-sm column-1">
+                Nombre y Apellido:
+                </div>
+                <div class="col-sm column-2">
+                <input class="field" type="text" name="name" id="name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm column-1">
+                Telefono:
+                </div>
+                <div class="col-sm column-2">
+                    <input class="field" type="text" name="phone" id="phone">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm column-1">
+                Dirección:
+                </div>
+                <div class="col-sm column-2">
+                    <input class="field" type="text" name="adress" id="adress">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm column-1">
+                </div>
+                <div class="col-sm column-2">
+                    <div class="error" id="error-cliente"></div>
+                    <button class="finalizar" onclick="finalizarPedido()">FINALIZAR PEDIDO</button>
                 </div>
             </div>
         </div>
