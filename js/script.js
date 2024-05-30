@@ -278,27 +278,27 @@ function getProductoNombre(valor) {
 
 // Función para finalizar la orden
 function finalizarPedido() {
-  // Get the form fields
+  // Se obtienen los campos del formulario
   const name = document.getElementById('name');
   const phone = document.getElementById('phone');
   const address = document.getElementById('adress');
 
-  // Validate the form fields
+  // Se validan los campos del formulario
   if (!name.value ||!phone.value ||!address.value) {
     document.getElementById('error-cliente').innerText = 'Por favor complete todos los campos.';
     return;
   }
 
-  // Create the confirmation message
+  // Se crea el mensaje de confirmación
   const message = `Muchas gracias por tu compra ${name.value}. Estaremos enviando tu pedido a ${address.value} en los proximos minutos.`;
 
-  // Set the confirmation message
+  // Se establece el mensaje de confirmación
   document.getElementById('confirmation-message').innerText = message;
 
-  // Show the confirmation dialog
+  // Se muestra el diálogo de confirmación
   document.getElementById('confirmation-dialog').style.display = 'block';
 
-  // Hide the client form and order summary
+  // Se oculta la orden de compra y el formulario para el cliente
   document.getElementById('form-cliente').style.display = 'none';
   document.getElementById('pedido-final').style.display = 'none';
 }
@@ -308,5 +308,5 @@ function cerrarConfirmacion() {
   document.getElementById('confirmation-dialog').style.display = 'none';
 }
 
-// Close the confirmation dialog when the close button is clicked
+// Cierra el diálogo de confirmación cuando se clickea el boton de cerrar
 document.getElementById('confirmation-close').addEventListener('click', cerrarConfirmacion);
