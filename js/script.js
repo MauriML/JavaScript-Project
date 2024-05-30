@@ -63,7 +63,7 @@ function moveToLeft() {
 async function cargarDatos() {
   try {
     // Realizamos la solicitud HTTP utilizando fetch
-    const response = await fetch('datos.js');
+    const response = await fetch('../js/datos.json');
 
     // Comprobamos si la solicitud fue exitosa
     if (response.ok) {
