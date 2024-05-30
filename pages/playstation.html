@@ -40,7 +40,7 @@
             <div class="cards">
                 <div class="row">
                     <div class="col-sm-6 mb-3">
-                        <div class="card" style="width: 170px;">
+                        <div class="card" style="width: 170px; height: 367px;">
                             <img src="../imagenes/PORTADA-PS4-193x240.webp" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Prince of Persia: The Lost Crown</h5>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <div class="card" style="width: 170px;">
+                        <div class="card" style="width: 170px; height: 367px;">
                             <img src="../imagenes/ps4-pro-image-block-01-en-24jul20.webp" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">PlayStation 4</h5>
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <div class="card" style="width: 170px;">
+                        <div class="card" style="width: 170px; height: 367px;">
                             <img src="../imagenes/PS5-FIFA24.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">FIFA 2024</h5>
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <div class="card" style="width: 170px;">
+                        <div class="card" style="width: 170px; height: 367px;">
                             <img src="../imagenes/PS5.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Play Station 5</h5>
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <div class="card" style="width: 170px;">
+                        <div class="card" style="width: 170px; height: 367px;">
                             <img src="../imagenes/NBA-2K24.jpg-5.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">NBA 2K24</h5>
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <div class="card" style="width: 170px;">
+                        <div class="card" style="width: 170px; height: 367px;">
                             <img src="../imagenes/Dead-Island-2.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Dead Island 2</h5>
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <div class="card" style="width: 170px;">
+                        <div class="card" style="width: 170px; height: 367px;">
                             <img src="../imagenes/Marvels-Spider-Man-Miles-Morales.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Spider Man Miles Morales</h5>
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <div class="card" style="width: 170px;">
+                        <div class="card" style="width: 170px; height: 367px;">
                             <img src="../imagenes/God-of-war-Ragnarok.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">God of War Ragnarok</h5>
@@ -120,7 +120,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <div class="card" style="width: 170px;">
+                        <div class="card" style="width: 170px; height: 367px;">
                             <img src="../imagenes/Lego-Star-Wars.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Lego Star Wars The Skywalker Saga</h5>
@@ -130,7 +130,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <div class="card" style="width: 170px;">
+                        <div class="card" style="width: 170px; height: 367px;">
                             <img src="../imagenes/Helldivers-2.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Helldivers 2</h5>
@@ -195,7 +195,7 @@
                 </div>
             </div>
         </div>
-        <div class="pedido-final" id="pedido-final"><table class="table table-hover table-dark finalizar-pedido">
+        <div class="pedido-final" id="pedido-final" style="display: none;"><table class="table table-hover table-dark finalizar-pedido">
             <thead>
                 <tr class="items">
                     <th scope="col">#</th>
@@ -224,7 +224,7 @@
                 </tr>
             </tbody>
             </table></div>
-        <div class="form-cliente container-fluid form" id="form-cliente">
+        <div class="form-cliente container-fluid form" id="form-cliente" style="display: none;">
             <div class="row">
                 <div class="col-sm column-1">
                 Nombre y Apellido:
@@ -256,6 +256,13 @@
                     <div class="error" id="error-cliente"></div>
                     <button class="finalizar" onclick="finalizarPedido()">FINALIZAR PEDIDO</button>
                 </div>
+            </div>
+        </div>
+        <div id="confirmation-dialog">
+            <div id="confirmation-content">
+                <h2>Confirmacion de Pedido</h2>
+                <span id="confirmation-message"></span>
+                <button id="confirmation-close" onclick="cerrarConfirmacion()">Cerrar</button>
             </div>
         </div>
     </section>

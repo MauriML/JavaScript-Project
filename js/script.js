@@ -13,14 +13,13 @@ function hideSidebar (){
 // Fin Navbar toggle
 
 // Carusel
-
 const btnleft = document.querySelector(".btn-left"),
-    btnright =  document.querySelector(".btn-right"),
-    slider = document.querySelector("#slider"),
-    sliderSection = document.querySelectorAll(".slider-section");
+  btnright =  document.querySelector(".btn-right"),
+  slider = document.querySelector("#slider"),
+  sliderSection = document.querySelectorAll(".slider-section");
 
 
-btnleft.addEventListener("click", e => moveToLeft())
+  btnleft.addEventListener("click", e => moveToLeft())
 btnright.addEventListener("click", e => moveToRight())
 
 setInterval(() => {
@@ -46,19 +45,56 @@ function moveToRight() {
 }
 
 function moveToLeft() {
-    counter--;
-    if (counter < 0) {
-        counter = sliderSection.length-1;
-        operacion = widthSvg * (sliderSection.length-1)
-        slider.style.transform = `translate(-${operacion}%)`;
-        slider.style.transition="none";
-        return;
-    }
-    operacion = operacion - widthSvg;
-    slider.style.transform = `translate(-${operacion}%)`;
-    slider.style.transition = "all ease .6s"
+  counter--;
+  if (counter < 0) {
+      counter = sliderSection.length-1;
+      operacion = widthSvg * (sliderSection.length-1)
+      slider.style.transform = `translate(-${operacion}%)`;
+      slider.style.transition="none";
+      return;
+  }
+  operacion = operacion - widthSvg;
+  slider.style.transform = `translate(-${operacion}%)`;
+  slider.style.transition = "all ease.6s"
 }
 // Fin Carusel
+
+// Función para cargar los datos desde un archivo JSON
+async function cargarDatos() {
+  try {
+    // Realizamos la solicitud HTTP utilizando fetch
+    const response = await fetch('datos.js');
+
+    // Comprobamos si la solicitud fue exitosa
+    if (response.ok) {
+      // Obtenemos los datos en formato JSON
+      const data = await response.json();
+
+      // Mostramos los datos en la consola
+      console.log(data);
+    } else {
+      // Si la solicitud no fue exitosa, mostramos un mensaje de error
+      console.error('Error al cargar los datos:', response.statusText);
+    }
+  } catch (error) {
+    // Si hubo algún error durante la solicitud o al procesar los datos, mostramos un mensaje de error
+    console.error('Error al cargar los datos:', error);
+  }
+}
+
+// Función para mostrar los datos cargados desde el archivo JSON
+async function mostrarDatos() {
+  try {
+    // Esperamos a que se carguen los datos
+    await cargarDatos();
+  } catch (error) {
+    // Si hubo algún error al cargar los datos, mostramos un mensaje de error
+    console.error('Error al mostrar los datos:', error);
+  }
+}
+
+// Llamamos a la función mostrarDatos para cargar y mostrar los datos
+mostrarDatos();
 
 
 // Play Station Section
@@ -242,26 +278,35 @@ function getProductoNombre(valor) {
 
 // Función para finalizar la orden
 function finalizarPedido() {
-  if ($("#name").val().trim() === "") {
-    $("#error-cliente").html("Debe ingresar un nombre");
+  // Get the form fields
+  const name = document.getElementById('name');
+  const phone = document.getElementById('phone');
+  const address = document.getElementById('adress');
+
+  // Validate the form fields
+  if (!name.value ||!phone.value ||!address.value) {
+    document.getElementById('error-cliente').innerText = 'Por favor complete todos los campos.';
     return;
   }
-  if ($("#phone").val().trim() === "") {
-    $("#error-cliente").html("Debe ingresar un teléfono");
-    return;
-  }
-  if ($("#adress").val().trim() === "") {
-    $("#error-cliente").html("Debe ingresar una dirección");
-    return;
-  }
-  $("#error-cliente").html("");
-  var mensaje = `Muchas gracias por tu compra ${$(
-    "#name"
-  ).val()}, estaremos enviando tu pedido a ${$(
-    "#adress"
-  ).val()} en los proximos minutos`;
-  $("#detalle-pedido").html(mensaje);
-  $("#modal-pedido").modal();
-  $("#pedido-final").html("");
-  $("#form-cliente").html("");
+
+  // Create the confirmation message
+  const message = `Muchas gracias por tu compra ${name.value}. Estaremos enviando tu pedido a ${address.value} en los proximos minutos.`;
+
+  // Set the confirmation message
+  document.getElementById('confirmation-message').innerText = message;
+
+  // Show the confirmation dialog
+  document.getElementById('confirmation-dialog').style.display = 'block';
+
+  // Hide the client form and order summary
+  document.getElementById('form-cliente').style.display = 'none';
+  document.getElementById('pedido-final').style.display = 'none';
 }
+
+// Función para cerrar el diálogo de confirmación
+function cerrarConfirmacion() {
+  document.getElementById('confirmation-dialog').style.display = 'none';
+}
+
+// Close the confirmation dialog when the close button is clicked
+document.getElementById('confirmation-close').addEventListener('click', cerrarConfirmacion);
