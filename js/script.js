@@ -148,12 +148,12 @@ function updateCart() {
 
 // Función para agregar producto
 function agregarProducto() {
-  var cantidad = parseInt($("#cantidad").val());
+  let cantidad = parseInt($("#cantidad").val());
   if (cantidad > 0) {
     $("#error").html("");
-    var itemId = parseInt($("#productos").val());
+    const itemId = parseInt($("#productos").val());
 
-    var indiceYaExiste = pedido.items.findIndex((item) => {
+    const indiceYaExiste = pedido.items.findIndex((item) => {
       return item.itemId == itemId;
     });
     if (indiceYaExiste == -1) {
@@ -198,7 +198,7 @@ function limpiarFormulario() {
 function calcularSubtotal() {
   const productName = document.getElementById('productos').value;
   const price = obtenerPrecio(productName);
-  const quantity = parseInt(document.getElementById('cantidad').value);
+  let quantity = parseInt(document.getElementById('cantidad').value);
 
   if (isNaN(quantity) || quantity <= 0) {
     document.getElementById('error').textContent = 'Ingrese una cantidad válida.';
@@ -221,13 +221,13 @@ document.getElementById("form-cliente").style.display = "none";
 // Función para agregar producto al pedido final
 function agregarProducto() {
   // Obtenemos los valores de los campos
-  var producto = document.getElementById("productos").value;
-  var cantidad = document.getElementById("cantidad").value;
-  var precio = document.getElementById("precio").value;
-  var subtotal = document.getElementById("subtotal").value;
+  const producto = document.getElementById("productos").value;
+  let cantidad = document.getElementById("cantidad").value;
+  const precio = document.getElementById("precio").value;
+  let subtotal = document.getElementById("subtotal").value;
 
   // Creamos una fila nueva en la tabla del pedido final
-  var fila = document.createElement("tr");
+  const fila = document.createElement("tr");
   fila.innerHTML = `
     <th scope="row">${document.querySelectorAll("#pedido-final tbody tr").length + 1}</th>
     <td>${getProductoNombre(producto)}</td>
@@ -235,7 +235,7 @@ function agregarProducto() {
     <td>${precio}</td>
     <td>${subtotal}</td>
     <td><span class="icono-eliminar" onclick="eliminarItem(${document.querySelectorAll("#pedido-final tbody tr").length})"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1.5-.5zm2.5 0a.5.5 0 0 1.5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1.5-.5zm3.5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
       <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
     </svg></span></td>
   `;
@@ -246,9 +246,9 @@ function agregarProducto() {
   document.getElementById("form-cliente").style.display = "block";
 
   // Calculamos el total
-  var total = 0;
-  var filas = document.querySelectorAll("#pedido-final tbody tr");
-  for (var i = 0; i < filas.length - 1; i++) {
+  let total = 0;
+  const filas = document.querySelectorAll("#pedido-final tbody tr");
+  for (let i = 0; i < filas.length - 1; i++) {
     total += parseFloat(filas[i].cells[4].textContent);
   }
   document.querySelector("#pedido-final tbody tr:last-child td.monto").textContent = total.toFixed(2);
@@ -257,9 +257,9 @@ function agregarProducto() {
 // Función para eliminar un item del pedido final
 function eliminarItem(index) {
   document.querySelectorAll("#pedido-final tbody tr")[index].remove();
-  var total = 0;
-  var filas = document.querySelectorAll("#pedido-final tbody tr");
-  for (var i = 0; i < filas.length - 1; i++) {
+  let total = 0;
+  const filas = document.querySelectorAll("#pedido-final tbody tr");
+  for (let i = 0; i < filas.length - 1; i++) {
     total += parseFloat(filas[i].cells[4].textContent);
   }
   document.querySelector("#pedido-final tbody tr:last-child td.monto").textContent = total.toFixed(2);
@@ -267,8 +267,8 @@ function eliminarItem(index) {
 
 // Función para obtener el nombre del producto según su valor
 function getProductoNombre(valor) {
-  var productos = document.getElementById("productos").options;
-  for (var i = 0; i < productos.length; i++) {
+  const productos = document.getElementById("productos").options;
+  for (let i = 0; i < productos.length; i++) {
     if (productos[i].value == valor) {
       return productos[i].text;
     }
